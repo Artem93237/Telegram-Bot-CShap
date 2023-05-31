@@ -1,8 +1,0 @@
-I have a Telegram bot project that I took from Python code and converted to C# (attached what I have created so far)
-
-I need constant functionality, so I'm looking for a cheap, fast, and great worker that will handle this project for a long time.
-
-
-Don't bid unless you have good skills in C#.
-If you can't afford at least 8 hours a day, don't bid.
-Because I am looking for someone to work long term
