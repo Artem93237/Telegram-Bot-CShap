@@ -35,7 +35,10 @@ namespace TelegramBot
 
         List<string> logTexts = new List<string>();
         List<TextBox> textBoxListLogs = new List<TextBox>();
-        ProgressForm m_progressForm = new ProgressForm();       
+        ProgressForm m_progressForm = new ProgressForm();
+
+        System.Windows.Forms.Timer tm;
+        bool tmRunning;
 
         public Form1()
         {
@@ -43,6 +46,49 @@ namespace TelegramBot
             LoadApplicationInformation();
             this.comboBoxPhone.Text = global::TelegramBot.Properties.Settings.Default.phone_number;
             textBoxListLogs.Add(textBoxLog);
+            tm = new System.Windows.Forms.Timer();
+            tm.Interval = 1000;
+            tm.Tick += this.Tm_Tick;
+            tmRunning = false;
+            
+        }
+
+        private async void Tm_Tick(object sender, EventArgs e)
+        {
+            if (tmRunning == true)
+                return;
+            if (_client == null || _client.User == null)
+            {
+//                MessageBox.Show("You must login first.");
+                
+                return;
+            }
+            tmRunning = true;
+            try
+            {
+                var str = await _client.Messages_GetAllDialogs();
+                string s = "";
+                foreach (var sss in str.Messages)
+                {
+                    s += "--------------------------------n";
+                    s += sss.ToString() + "\nID=" + sss.ID + "\nFrom=" + sss.From + "\nPeer=" + sss.Peer.ToString() + '\n';
+                    string ss = sss.ToString();
+                    if (ss.Contains("Login code:"))
+                    {
+                        textBoxVerificationCode.Text = ss;
+                    }
+                }
+            }
+            catch(Exception es)
+            {
+                AppendLogErrorText("Error\n" + es.Message);
+                AppendLogText("Error\n" + es.Message);
+                AppendLogText("Error\n" + es.Message);
+            }
+            tmRunning = false;
+//            MessageBox.Show(s);
+
+
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -154,6 +200,7 @@ namespace TelegramBot
         private async void buttonLogin_ClickAsync(object sender, EventArgs e)
         {
             var SessionPath = Path.GetTempFileName();
+            MessageBox.Show(SessionPath);
             buttonLogin.Enabled = false;
             if (File.Exists("c:\\WTelegram.session"))
             {
@@ -195,6 +242,7 @@ namespace TelegramBot
             if (comboBoxPhone.Items.Contains(comboBoxPhone.Text) == false)
                 comboBoxPhone.Items.Add(comboBoxPhone.Text);
             comboBoxPhone.Enabled = false;
+            tm.Start();
         }
 
         private async void buttonSendCode_ClickAsync(object sender, EventArgs e)
@@ -2645,6 +2693,19 @@ namespace TelegramBot
             }
 
             if (!bExist) listBoxMember.SelectedIndex = -1;
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            var str = await _client.Messages_GetAllDialogs();
+            string s = "";
+            foreach(var sss in str.Messages)
+            {
+                s += "--------------------------------\n";
+                s += sss.ToString() + "\nID=" + sss.ID + "\nFrom=" + sss.From + "\nPeer=" + sss.Peer.ToString() + '\n';
+            }
+            File.AppendAllText("msg.txt", s, Encoding.UTF8);
+            MessageBox.Show(s);
         }
     }
 }

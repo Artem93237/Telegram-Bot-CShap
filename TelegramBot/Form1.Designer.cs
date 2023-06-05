@@ -160,6 +160,8 @@ namespace TelegramBot
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBoxPhone = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBoxVerificationCode = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -394,12 +396,12 @@ namespace TelegramBot
             this.contextMenuStrip_listboxContact.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem1});
             this.contextMenuStrip_listboxContact.Name = "contextMenuStrip_listboxContact";
-            this.contextMenuStrip_listboxContact.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip_listboxContact.Size = new System.Drawing.Size(103, 26);
             // 
             // copyToolStripMenuItem1
             // 
             this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
-            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
             this.copyToolStripMenuItem1.Text = "Copy";
             this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyToolStripMenuItem1_Click);
             // 
@@ -1480,11 +1482,31 @@ namespace TelegramBot
             this.comboBoxPhone.Size = new System.Drawing.Size(150, 21);
             this.comboBoxPhone.TabIndex = 57;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(901, 95);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(191, 23);
+            this.button2.TabIndex = 58;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBoxVerificationCode
+            // 
+            this.textBoxVerificationCode.Location = new System.Drawing.Point(901, 125);
+            this.textBoxVerificationCode.Multiline = true;
+            this.textBoxVerificationCode.Name = "textBoxVerificationCode";
+            this.textBoxVerificationCode.Size = new System.Drawing.Size(192, 94);
+            this.textBoxVerificationCode.TabIndex = 59;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 629);
+            this.Controls.Add(this.textBoxVerificationCode);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBoxPhone);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.tabControl2);
@@ -1692,6 +1714,8 @@ namespace TelegramBot
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox textBox_SearchContactList;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBoxVerificationCode;
     }
 }
 
